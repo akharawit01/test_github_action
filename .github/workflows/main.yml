@@ -1,27 +1,32 @@
-name: Greet Everyone
-
-on: [push]
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - master
 jobs:
-  my_first_job:
-    name: My first job
+  install-and-test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
     steps:
-      - run: echo This event is runing my_first_job.
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@master
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install and Test
+        run: |
+          yarn
+          yarn test
+        env:
+          CI: true
 
-      - name: yarn install
-        run: yarn install
-
-  my_second_job:
-    name: My second job
-    needs: my_first_job
+  build-and-deploy:
     runs-on: ubuntu-latest
+    neets: install-and-test
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@master
 
-      - name: yarn test
-        run: yarn test
-
-      - name: yarn build
-        run: yarn build
+      - name: Build and Deploy
