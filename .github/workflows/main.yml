@@ -29,8 +29,8 @@ jobs:
     needs: install-and-check
     steps:
       - uses: actions/checkout@master
-      - uses: elgohr/Publish-Docker-Github-Action@master
       - name: Publish to Registry
+      - uses: elgohr/Publish-Docker-Github-Action@master
         with:
           name: ${{ secrets.DOCKER_REPO}}
           username: ${{ secrets.DOCKER_USERNAME }}
