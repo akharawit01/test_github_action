@@ -7,6 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo This event is runing my_first_job.
+      - uses: actions/setup-node@v1
+
+      - name: yarn install
+        run: yarn install
 
   my_second_job:
     name: My second job
@@ -15,7 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
-      - name: yarn install, yarn lint, yarn test, yarn build
-        run: |
-          yarn install
-          yarn build
+
+      - name: yarn test
+        run: yarn test
+
+      - name: yarn build
+        run: yarn build
