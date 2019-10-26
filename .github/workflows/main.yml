@@ -4,7 +4,8 @@ on: [push]
 jobs:
   my_first_job:
     name: My first job
-    run: echo This event is runing my_first_job.
+    steps:
+      - run: echo This event is runing my_first_job.
 
   my_second_job:
     name: My second job
