@@ -1,0 +1,10 @@
+name: Greet Everyone
+
+on: [push]
+job:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v1
