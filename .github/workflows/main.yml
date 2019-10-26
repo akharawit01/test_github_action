@@ -24,7 +24,7 @@ jobs:
 
   build-and-deploy:
     runs-on: ubuntu-latest
-    neets: install-and-test
+    needs: install-and-test
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js ${{ matrix.node-version }}
