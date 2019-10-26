@@ -4,11 +4,7 @@ on: [push]
 jobs:
   my_first_job:
     name: My first job
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-      - run: yarn
+    run: echo This event is runing my_first_job.
 
   my_second_job:
     name: My second job
@@ -17,4 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
-      - run: yarn test
+      - run: yarn && yarn test
