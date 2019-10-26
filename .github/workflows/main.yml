@@ -11,10 +11,11 @@ jobs:
   my_second_job:
     name: My second job
     needs: my_first_job
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-      - run: |
-          yarn  
-          yarn test:watch
+        uses: actions/setup-node@v1
+      - name: yarn install, yarn lint, yarn test, yarn build
+        run: |
+          yarn install
+          yarn test
+          yarn build
