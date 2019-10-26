@@ -38,4 +38,3 @@ jobs:
       - name: Publish to Registry
         run: |
           docker image build -t ${{ secrets.DOCKER_REPO }}:develop -t ${{ secrets.DOCKER_REPO }}:develop --file Dockerfile .
-          docker push ${{ secrets.DOCKER_REPO }}:develop
