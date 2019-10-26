@@ -7,16 +7,9 @@ jobs:
 
     steps:
       - name: Install
-        uses: actions/checkout@v1
-        uses: actions/setup-node@v1
-          run: npm
-    
-      - name: Check
-        uses: actions/checkout@v1
-        uses: actions/setup-node@v1
-          run: npm test
-
-      - name: Build
-        uses: actions/checkout@v1
-        uses: actions/setup-node@v1
-          run: npm build
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - run: yarn
+      - run: yarn test
