@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.6.0",
+    "eslint-plugin-react": "^7.16.0",
+    "prettier": "^1.18.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.2.0"
@@ -12,6 +16,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:watch": "CI=true react-scripts test --env=jsdom",
+    "lint:check": "eslint src --color",
+    "prettier:check": "prettier --list-different 'src/**/*.{js,css}'",
+    "prettier": "prettier --write 'src/**/*.{js,css}'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
