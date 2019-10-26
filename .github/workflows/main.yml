@@ -26,6 +26,9 @@ jobs:
     runs-on: ubuntu-latest
     neets: install-and-test
     steps:
-      - uses: actions/checkout@master
       - name: Checkout
+      - uses: actions/checkout@master
+
       - name: Build and Deploy
+        uses: actions/setup-node@master
+        run: echo test
