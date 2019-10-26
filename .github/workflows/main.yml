@@ -29,12 +29,15 @@ jobs:
     needs: install-and-check
     steps:
       - uses: actions/checkout@master
-      - uses: elgohr/Publish-Docker-Github-Action@master
+      - uses: docker://alpine:latest
         with:
           name: ${{ secrets.DOCKER_REPO}}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          registry: docker.pkg.github.com
+          cache: true
 
       - name: Publish to Registry
         run: |
           docker image build -t ${{ secrets.DOCKER_REPO }}:develop -t ${{ secrets.DOCKER_REPO }}:develop --file Dockerfile .
+          docker push ${{ secrets.DOCKER_REPO }}:develop
