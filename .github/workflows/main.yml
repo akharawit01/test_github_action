@@ -36,4 +36,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Publish to Registry
-        run: echo ${{ secrets.DOCKER_REPO }} ${{ secrets.DOCKER_USERNAME }}
+        run: |
+          docker image build -t ${{ secrets.DOCKER_REPO }}:develop -t ${{ secrets.DOCKER_REPO }}:develop --file Dockerfile .
+          docker push ${{ secrets.DOCKER_REPO }}:develop
