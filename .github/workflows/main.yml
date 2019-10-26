@@ -9,14 +9,14 @@ jobs:
       - name: Install
         uses: actions/checkout@v1
         uses: actions/setup-node@v1
-          run: yarn
+          run: npm
     
       - name: Check
         uses: actions/checkout@v1
         uses: actions/setup-node@v1
-          run: yarn test
+          run: npm test
 
       - name: Build
         uses: actions/checkout@v1
         uses: actions/setup-node@v1
-          run: yarn build
+          run: npm build
