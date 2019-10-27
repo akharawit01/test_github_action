@@ -8,8 +8,8 @@ jobs:
         node-version: [12.x]
     steps:
       - uses: actions/checkout@master
-        with:
-          fetch-depth: 1
+      # with:
+      #   fetch-depth: 1
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@master
