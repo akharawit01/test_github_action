@@ -35,3 +35,5 @@ jobs:
       - name: Docker build image
         run: |
           docker image build -t ${{ secrets.DOCKER_REPO }}:develop -t ${{ secrets.DOCKER_REPO }}:develop --file Dockerfile .
+          docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}} ${{ secrets.DOCKER_REPO }}
+          docker images
