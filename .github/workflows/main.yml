@@ -28,7 +28,7 @@ jobs:
         env:
           CI: true
 
-      - name: Danger JS Action
+      - name: Danger
         if: success()
         uses: danger/danger-js@9.1.8
         env:
