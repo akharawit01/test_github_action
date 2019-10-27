@@ -1,5 +1,10 @@
-name: Build and Deploy
+name: Test github workflows
 on:
+ push:
+    branches:
+      - master
+      - develop
+      - staging
   pull_request:
     branches:
       - master
@@ -10,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [12.x]
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js ${{ matrix.node-version }}
@@ -31,14 +36,7 @@ jobs:
     needs: install-and-check
     steps:
       - uses: actions/checkout@master
-      - uses: elgohr/Publish-Docker-Github-Action@master
-        with:
-          name: ${{ secrets.DOCKER_REPO}}
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          cache: true
-
       - name: Publish to Registry
+        uses: docker://node:alpine
         run: |
           docker image build -t ${{ secrets.DOCKER_REPO }}:develop -t ${{ secrets.DOCKER_REPO }}:develop --file Dockerfile .
-          docker push ${{ secrets.DOCKER_REPO }}:develop
