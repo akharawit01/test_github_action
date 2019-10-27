@@ -1,5 +1,5 @@
 name: Test github workflows
-on: [push]
+on: [push, pull_request]
 jobs:
   install-and-check:
     runs-on: ubuntu-latest
@@ -28,6 +28,8 @@ jobs:
     needs: install-and-check
     steps:
       - uses: actions/checkout@master
+        with:
+          fetch-depth: 1
 
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
@@ -37,3 +39,32 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           cache: true
           tag_names: true
+          snapshot: true
+
+  github-log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+      - name: Dump steps context
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
+      - name: Dump runner context
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: echo "$RUNNER_CONTEXT"
+      - name: Dump strategy context
+        env:
+          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+        run: echo "$STRATEGY_CONTEXT"
+      - name: Dump matrix context
+        env:
+          MATRIX_CONTEXT: ${{ toJson(matrix) }}
+        run: echo "$MATRIX_CONTEXT"
