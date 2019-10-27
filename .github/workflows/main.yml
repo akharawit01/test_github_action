@@ -1,15 +1,15 @@
 name: Test github workflows
 on:
- push:
+  push:
     branches:
       - master
       - develop
       - staging
-  pull_request:
-    branches:
-      - master
-      - develop
-      - staging
+    pull_request:
+      branches:
+        - master
+        - develop
+        - staging
 jobs:
   install-and-check:
     runs-on: ubuntu-latest
