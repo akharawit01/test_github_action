@@ -18,10 +18,12 @@ jobs:
         node-version: [12.x]
     steps:
       - uses: actions/checkout@master
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@master
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Install, Test, Prettier check and Eslint check.
         run: |
           yarn
@@ -36,7 +38,10 @@ jobs:
     needs: install-and-check
     steps:
       - uses: actions/checkout@master
-      - uses: docker://node:alpine
-      - name: Publish to Registry
+
+      - name: Use Docker node alpine
+        uses: docker://node:alpine
+
+      - name: Docker build image
         run: |
           docker image build -t ${{ secrets.DOCKER_REPO }}:develop -t ${{ secrets.DOCKER_REPO }}:develop --file Dockerfile .
