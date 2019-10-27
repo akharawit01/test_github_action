@@ -10,17 +10,17 @@ import { danger, fail, warn } from "danger";
 // Critical
 // ========
 
-if (danger.github.pr.base.ref !== "master") {
-  fail("We only accept PRs to `master` branch.");
-}
+// if (danger.github.pr.base.ref !== "master") {
+//   fail("We only accept PRs to `master` branch.");
+// }
 
-if (!danger.github.pr.head.ref.match(/homework-\d+/)) {
-  fail("Your branch should be named `homework-${HOMEWORK_NUMBER}`.");
-}
+// if (!danger.github.pr.head.ref.match(/homework-\d+/)) {
+//   fail("Your branch should be named `homework-${HOMEWORK_NUMBER}`.");
+// }
 
-if (!danger.github.pr.body || danger.github.pr.body.length < 100) {
-  fail("The description of this PR is wrong, please fill it. Use PR template.");
-}
+// if (!danger.github.pr.body || danger.github.pr.body.length < 100) {
+//   fail("The description of this PR is wrong, please fill it. Use PR template.");
+// }
 
 // Warnings
 // ========
