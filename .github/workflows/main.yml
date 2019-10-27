@@ -29,11 +29,11 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Use Docker node alpine
-        uses: docker://node:alpine
-
-      - name: Docker build image
-        run: |
-          docker image build -t ${{ secrets.DOCKER_REPO }}:develop -t ${{ secrets.DOCKER_REPO }}:develop --file Dockerfile .
-          docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}} ${{ secrets.DOCKER_REPO }}
-          docker images
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: ${{ secrets.DOCKER_REPO }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          cache: true
+          tag_names: true
