@@ -28,9 +28,11 @@ jobs:
         env:
           CI: true
 
-      - name: Danger JS Action
+      - name: Danger JS
         if: success()
-        uses: danger/danger-js@9.1.8
+        uses: danger/danger-js@X.Y.Z
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-and-deploy:
     name: Build and Deploy
