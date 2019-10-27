@@ -36,7 +36,7 @@ jobs:
     needs: install-and-check
     steps:
       - uses: actions/checkout@master
+      - uses: docker://node:alpine
       - name: Publish to Registry
-        uses: docker://node:alpine
         run: |
           docker image build -t ${{ secrets.DOCKER_REPO }}:develop -t ${{ secrets.DOCKER_REPO }}:develop --file Dockerfile .
