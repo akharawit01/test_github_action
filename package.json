@@ -15,7 +15,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:watch": "CI=true react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
     "lint:check": "eslint src --color",
     "prettier:check": "prettier --list-different 'src/**/*.{js,css}'",
     "prettier": "prettier --write 'src/**/*.{js,css}'",
