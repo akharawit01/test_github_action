@@ -28,9 +28,9 @@ jobs:
         env:
           CI: true
 
-      - name: Danger JS
+      - name: Danger JS Action
         if: success()
-        uses: danger/danger-js@X.Y.Z
+        uses: danger/danger-js@9.1.8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
